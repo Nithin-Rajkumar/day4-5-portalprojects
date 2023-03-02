@@ -3,6 +3,7 @@ package com.example.demo.Controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,5 +31,10 @@ public class ApiController {
 	@DeleteMapping("/delete")
 	public String delete(@RequestParam int id) {
 		return service.deleteEmp(id);
+	}
+	@GetMapping("/sortandpage/{offset}/{pageno}/{field}")
+	public Page<Employee> sortPagination(@PathVariable int offset,@PathVariable int pageno,@PathVariable String field){
+		return  service.dosortAndPage(offset, pageno, field);
+		
 	}
 }
